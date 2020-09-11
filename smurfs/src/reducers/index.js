@@ -39,8 +39,10 @@ import {combineReducers} from 'redux'
 const reducersTwo = (state=initialState, action) => {
     switch(action.type){
         case POST_DATA:
+            
       return {
         ...state,
+        newSmurf: action.payload
        
       };
     
@@ -48,8 +50,7 @@ const reducersTwo = (state=initialState, action) => {
       return {
         ...state,
         smurfs: action.payload,
-        isFetching: false,
-        error: ""
+       
       }
     case POST_DATA_ERROR:
         return {

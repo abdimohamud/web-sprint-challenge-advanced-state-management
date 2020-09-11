@@ -7,9 +7,11 @@ export const POST_DATA_ERROR = "POST_DATA_ERROR";
 
 // ACTION CREATORS
 export const postSmurfsData = (info) => {
+    console.log(info)
   return (dispatch) => {
+    dispatch({ type: POST_DATA, payload:info })
     axios
-      .post("http://localhost:3333/smurfs", dispatch({ type: POST_DATA, payload:info }))
+      .post("http://localhost:3333/smurfs", info)
       .then((response) => {
         dispatch({ type: POST_DATA_SUCCESS, payload: response.data });
       })

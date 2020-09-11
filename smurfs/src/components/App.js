@@ -1,14 +1,34 @@
-import React, { Component, } from "react";
+import React, { useState } from "react";
 import {connect} from 'react-redux'
-import {getSmurfsData} from '../actions'
+import {getSmurfsData, postSmurfsData} from '../actions'
 import Smurfs from './Smurfs'
 import "./App.css";
+
+const initialValues = {
+  name:'',
+  age:0,
+  height: '',
+} 
  function App (props) {
+  const [values, setValues] = useState(initialValues);
+  console.log(values)
+  
   const fetchIt = e => {
     e.preventDefault();
     props.getSmurfsData();
   };
-  console.log(props.smurfs)
+  
+
+  const handleChanges = (e) => {
+    
+    setValues({...values,[e.target.name] : e.target.value });
+  };
+
+  const handleSubmit = () => {
+    
+    props.postSmurfsData(values);
+  };
+  
 
   
     return (
@@ -21,7 +41,15 @@ import "./App.css";
           <Smurfs key={smurf.id} smurf={smurf} />
         ))}
         {props.error && <p className="error">{props.error}</p>}
+        
+        
+        <input type="text" name="name" value={values.name} onChange={handleChanges} placeholder="name"  />
+        <input type="number" name ="age" value={values.age} onChange={handleChanges} placeholder="age"  />
+        <input type="text" name ="height" value={values.height} onChange={handleChanges} placeholder="height"  />
+        <button onClick={handleSubmit}>Submit</button>
         <button onClick={fetchIt}>Fetch Data!</button>
+      
+       
       </div>
     );
   
@@ -34,4 +62,4 @@ function mapStateToProps (state){
 
 }
 
-export default connect (mapStateToProps, {getSmurfsData}) (App);
+export default connect (mapStateToProps, {getSmurfsData, postSmurfsData}) (App);
