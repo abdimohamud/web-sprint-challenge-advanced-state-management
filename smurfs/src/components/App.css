@@ -1,3 +1,22 @@
 .App {
   text-align: center;
+ 
+}
+.App h1{
+  color: #62cdfd
+}
+body {
+  background-image: url("https://i.pinimg.com/originals/34/a3/7b/34a37b810b57d8fa2866f1f2d215c20e.jpg");
+  background-repeat: no-repeat;
+  background-position: fixed;
+}
+
+.error {
+  padding: 16px;
+  background-color: #ffb7b7;
+  color: red;
+  border: solid 1px #f39595;
+  border-radius: 4px;
+  max-width: 700px;
+  margin: 16px auto;
 }
